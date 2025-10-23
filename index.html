@@ -4188,5 +4188,195 @@
             setTimeout(initializeGoogleSignIn, 1000);
         });
     </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98f5c46866f5d055',t:'MTc2MDU5ODk0OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98f5c46866f5d055',t:'MTc2MDU5ODk0OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+ <!-- START: Terrascope Injected Modals & Integrations (DO NOT REMOVE) -->
+<style>
+/* Modal and popup styles (kept minimal, safe) */
+.ts-overlay { position: fixed; inset:0; background: rgba(2,6,23,0.75); display:none; z-index:9998; }
+.ts-modal { position: fixed; left:50%; top:50%; transform:translate(-50%,-50%); background: linear-gradient(180deg, rgba(10,14,25,0.98), rgba(6,10,18,0.98)); border-radius:12px; padding:20px; color:#cbd5e1; width:92%; max-width:720px; box-shadow:0 20px 40px rgba(0,0,0,0.6); z-index:9999; display:none; }
+.ts-modal h2{ margin:0 0 8px 0; color:#dbeafe; font-size:1.35rem; }
+.ts-modal p{ color:#94a3b8; line-height:1.5; }
+.ts-close{ position:absolute; right:12px; top:10px; background:none; border:none; color:#9fb4ff; font-size:20px; cursor:pointer; }
+.ts-actions{ margin-top:14px; text-align:right; }
+.ts-btn{ background: linear-gradient(90deg,#2b6cff,#4a8bff); color:white; padding:8px 12px; border-radius:8px; border:none; cursor:pointer; font-weight:600; }
+.ts-input, .ts-textarea { width:100%; padding:10px; border-radius:8px; background:#071027; border:1px solid rgba(255,255,255,0.03); color:#cbd5e1; outline:none; }
+#ts-feedback-popup { position: fixed; left:50%; top:50%; transform:translate(-50%,-50%) scale(1); background: linear-gradient(180deg,#06202f,#0b1220); color:#e6f0ff; padding:18px 22px; border-radius:12px; box-shadow:0 18px 40px rgba(0,0,0,0.6); z-index:10001; display:none; text-align:center; width:90%; max-width:420px; }
+/* small responsive tweaks */
+@media (max-width:520px){ .ts-modal{ padding:16px; width:94%; } #ts-feedback-popup{ width:88%; } }
+</style>
+
+<!-- Overlay element used by modals -->
+<div id="ts-overlay" class="ts-overlay" onclick="tsCloseAll()"></div>
+
+<!-- ABOUT modal -->
+<div id="ts-about" class="ts-modal" role="dialog" aria-hidden="true">
+  <button class="ts-close" onclick="tsClose('ts-about')">&times;</button>
+  <h2>About Terrascope</h2>
+  <p>Terrascope is a Geo-Intelligence platform built to visualize and analyze global disasters and live weather. We integrate satellite imagery, authoritative datasets, and real-time APIs to deliver interactive maps and visual stories about cyclones, floods, and earthquakes.</p>
+  <div class="ts-actions"><button class="ts-btn" onclick="tsClose('ts-about')">Close</button></div>
+</div>
+
+<!-- CONTACT modal -->
+<div id="ts-contact" class="ts-modal" role="dialog" aria-hidden="true">
+  <button class="ts-close" onclick="tsClose('ts-contact')">&times;</button>
+  <h2>Contact Us</h2>
+  <p>You can also email us at <strong>contact.terrascope@gmail.com</strong>. Or send feedback using the form below.</p>
+  <div style="margin-top:10px;">
+    <input id="ts-user-name" class="ts-input" placeholder="Your name" type="text" required />
+  </div>
+  <div style="margin-top:10px;">
+    <input id="ts-user-email" class="ts-input" placeholder="Your email" type="email" required />
+  </div>
+  <div style="margin-top:10px;">
+    <textarea id="ts-user-message" class="ts-textarea" rows="6" placeholder="Write your message..."></textarea>
+  </div>
+  <div class="ts-actions">
+    <button class="ts-btn" onclick="tsSendFeedback()">Send Feedback</button>
+  </div>
+</div>
+
+<!-- PROFILE modal -->
+<div id="ts-profile" class="ts-modal" role="dialog" aria-hidden="true">
+  <button class="ts-close" onclick="tsClose('ts-profile')">&times;</button>
+  <h2>Your Profile</h2>
+  <div style="display:flex;align-items:center;gap:12px;margin-top:8px;">
+    <img id="ts-profile-pic" src="" alt="avatar" style="width:84px;height:84px;border-radius:50%;object-fit:cover;border:2px solid #2b6cff;" />
+    <div>
+      <div id="ts-profile-name" style="font-weight:700;color:#e6f0ff;">User Name</div>
+      <div id="ts-profile-email" style="color:#94a3b8;font-size:0.95rem;">email@example.com</div>
+    </div>
+  </div>
+  <div class="ts-actions"><button class="ts-btn" onclick="tsClose('ts-profile')">Close</button></div>
+</div>
+
+<!-- SETTINGS modal -->
+<div id="ts-settings" class="ts-modal" role="dialog" aria-hidden="true">
+  <button class="ts-close" onclick="tsClose('ts-settings')">&times;</button>
+  <h2>Settings</h2>
+  <div style="margin-top:10px;display:flex;flex-direction:column;gap:10px;">
+    <label style="display:flex;justify-content:space-between;align-items:center;">
+      <span style="color:#cbd5e1;">Dark Satellite Theme</span>
+      <input id="ts-toggle-dark" type="checkbox" />
+    </label>
+    <label style="display:flex;justify-content:space-between;align-items:center;">
+      <span style="color:#cbd5e1;">Notifications</span>
+      <input id="ts-toggle-notify" type="checkbox" />
+    </label>
+  </div>
+  <div class="ts-actions"><button class="ts-btn" onclick="tsClose('ts-settings')">Close</button></div>
+</div>
+
+<!-- Centered feedback popup -->
+<div id="ts-feedback-popup" role="status" aria-live="polite"></div>
+
+<!-- EmailJS library (provided keys will be used) -->
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script>
+(function(){ emailjs.init("XXTKwGgLdpq-QB2Bu"); })(); // Public key injected
+
+// Modal helpers
+function tsOpen(id){
+  document.getElementById('ts-overlay').style.display='block';
+  const el = document.getElementById(id);
+  if(el){ el.style.display='block'; el.setAttribute('aria-hidden','false'); }
+  document.body.style.overflow='hidden';
+}
+function tsClose(id){
+  const el = document.getElementById(id);
+  if(el){ el.style.display='none'; el.setAttribute('aria-hidden','true'); }
+  const any = Array.from(document.querySelectorAll('.ts-modal')).some(m=>m.style.display==='block');
+  if(!any) document.getElementById('ts-overlay').style.display='none';
+  document.body.style.overflow='';
+}
+function tsCloseAll(){ document.querySelectorAll('.ts-modal').forEach(m=>{m.style.display='none';m.setAttribute('aria-hidden','true');}); document.getElementById('ts-overlay').style.display='none'; document.body.style.overflow=''; }
+
+// Attach buttons by text (About, Contact, Profile, Settings) - non-destructive
+function tsAttachHandlers(){
+  const map = { 'about':'ts-about','contact':'ts-contact','profile':'ts-profile','settings':'ts-settings' };
+  document.querySelectorAll('a,button,span,div').forEach(el=>{
+    if(!el || !el.textContent) return;
+    const txt = el.textContent.trim().toLowerCase();
+    if(map[txt]){
+      el.addEventListener('click', function(e){ e.preventDefault(); tsOpen(map[txt]); });
+      el.style.cursor = 'pointer';
+    }
+  });
+}
+
+// Center popup show
+function tsShowPopup(message, success=true){
+  const pop = document.getElementById('ts-feedback-popup');
+  pop.textContent = message;
+  pop.style.display = 'block';
+  pop.style.opacity = '1';
+  pop.style.border = success ? '1px solid rgba(59,130,246,0.4)' : '1px solid rgba(220,38,38,0.4)';
+  setTimeout(()=>{ pop.style.transition='opacity 0.6s ease'; pop.style.opacity='0'; }, 3000);
+  setTimeout(()=>{ pop.style.display='none'; pop.style.transition=''; }, 3800);
+}
+
+// Send feedback via EmailJS
+function tsSendFeedback(){
+  const name = document.getElementById('ts-user-name').value.trim();
+  const email = document.getElementById('ts-user-email').value.trim();
+  const msg = document.getElementById('ts-user-message').value.trim();
+  if(!name || !email || !msg){ tsShowPopup('Please complete name, email, and message.', false); return; }
+  const params = { user_name: name, user_email: email, message: msg };
+  emailjs.send('service_8qs0pp8','template_prw9zy8', params)
+    .then(()=>{
+      tsShowPopup('✅ Feedback sent — thank you!', true);
+      document.getElementById('ts-user-name').value='';
+      document.getElementById('ts-user-email').value='';
+      document.getElementById('ts-user-message').value='';
+      tsClose('ts-contact');
+    })
+    .catch(err=>{
+      console.error('EmailJS send error', err);
+      tsShowPopup('❌ Failed to send feedback. Try again later.', false);
+    });
+}
+
+// Profile update helpers (Google token decoding)
+function tsSetProfile(profile){
+  try{ localStorage.setItem('ts_user_profile', JSON.stringify(profile)); }catch(e){}
+  // update any common avatar selectors
+  const selectors = ['img#userAvatar','img.user-avatar','img.avatar','img.profile-pic','img#avatar','img.profileIcon'];
+  selectors.forEach(s=>{ const el=document.querySelector(s); if(el && profile.picture) el.src = profile.picture; });
+  const pic = document.getElementById('ts-profile-pic'); if(pic) pic.src = profile.picture || '';
+  const nm = document.getElementById('ts-profile-name'); if(nm) nm.textContent = profile.name || 'User';
+  const em = document.getElementById('ts-profile-email'); if(em) em.textContent = profile.email || '';
+}
+
+// Decode JWT safely
+function tsDecodeJwt(token){
+  try{
+    const p = token.split('.')[1];
+    const b = atob(p.replace(/-/g,'+').replace(/_/g,'/'));
+    const json = decodeURIComponent(Array.prototype.map.call(b, c=> '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join(''));
+    return JSON.parse(json);
+  }catch(e){ return null; }
+}
+
+// Wrap existing handleCredentialResponse or set our own to stay on same page
+(function(){
+  const existing = window.handleCredentialResponse;
+  window.handleCredentialResponse = function(response){
+    try{
+      if(response && response.credential){
+        const data = tsDecodeJwt(response.credential);
+        if(data){
+          const profile = { name: data.name||data.given_name, email: data.email, picture: data.picture };
+          tsSetProfile(profile);
+        }
+      }
+    }catch(e){ console.warn('TS profile parse error', e); }
+    if(typeof existing === 'function'){ try{ existing(response); }catch(e){ console.warn(e); } }
+    // update UI
+  };
+  // attach buttons on DOM ready
+  document.addEventListener('DOMContentLoaded', function(){ tsAttachHandlers(); const p = localStorage.getItem('ts_user_profile'); if(p) tsSetProfile(JSON.parse(p)); });
+})();
+</script>
+<!-- END: Terrascope Injected Modals & Integrations -->
+</body>
+
 </html>
